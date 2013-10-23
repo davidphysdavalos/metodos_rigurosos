@@ -89,8 +89,17 @@ class DifAuto(object):
     def __pow__(self, n):
         '''
         Operacion potencia para jets.
+        
         '''
-        return DifAuto (self.valor**n, n*self.valor**(n-1)*self.deriv)
+        if not isinstance(n,DifAuto):
+            
+            n=DifAuto(n)
+            
+        value=(1.0*self.valor)**n.valor
+
+        return DifAuto(value, value*(n.deriv*math.log(self.valor)+(1.0*n.valor/self.valor)*self.deriv))
+            
+         #   return DifAuto (self.valor**n, n*self.valor**(n-1)*self.deriv)
 
     def exp(self):
         """
