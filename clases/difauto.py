@@ -99,7 +99,6 @@ class DifAuto(object):
 
         return DifAuto(value, value*(n.deriv*math.log(self.valor)+(1.0*n.valor/self.valor)*self.deriv))
             
-         #   return DifAuto (self.valor**n, n*self.valor**(n-1)*self.deriv)
 
     def exp(self):
         """
