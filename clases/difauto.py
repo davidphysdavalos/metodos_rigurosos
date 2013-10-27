@@ -99,6 +99,18 @@ class DifAuto(object):
 
         return DifAuto(value, value*(n.deriv*math.log(self.valor)+(1.0*n.valor/self.valor)*self.deriv))
             
+            
+    def __rpow__(self,base):
+        
+        if not isinstance(base,DifAuto):
+            
+            base=DifAuto(base)
+            
+        value=(1.0*base.valor)**self.valor
+            
+        return DifAuto(value, value*(self.deriv*math.log(base.valor)+(1.0*self.valor/base.valor)*base.deriv))
+        
+        
 
     def exp(self):
         """
