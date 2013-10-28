@@ -106,9 +106,7 @@ class DifAuto(object):
             
             base=DifAuto(base)
             
-        value=(1.0*base.valor)**self.valor
-            
-        return DifAuto(value, value*(self.deriv*math.log(base.valor)+(1.0*self.valor/base.valor)*base.deriv))
+        return base**self
         
         
 
