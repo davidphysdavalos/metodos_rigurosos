@@ -65,10 +65,6 @@ class DifAuto(object):
         
     def __rmul__(self, otro):
         return self * otro
-        
-    def __neg__(self):
-        
-        return DifAuto(-self.valor,-self.deriv)
     
     def __div__(self, otro):
         """
@@ -93,26 +89,8 @@ class DifAuto(object):
     def __pow__(self, n):
         '''
         Operacion potencia para jets.
-        
         '''
-        if not isinstance(n,DifAuto):
-            
-            n=DifAuto(n)
-            
-        value=(1.0*self.valor)**n.valor
-
-        return DifAuto(value, value*(n.deriv*math.log(self.valor)+(1.0*n.valor/self.valor)*self.deriv))
-            
-            
-    def __rpow__(self,base):
-        
-        if not isinstance(base,DifAuto):
-            
-            base=DifAuto(base)
-            
-        return base**self
-        
-        
+        return DifAuto (self.valor**n, n*self.valor**(n-1)*self.deriv)
 
     def exp(self):
         """
